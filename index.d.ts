@@ -433,6 +433,10 @@ declare module 'plaid' {
     public_token: string;
   }
 
+  interface SandboxItemFireWebhookResponse extends BaseResponse {
+    webhook_fired: boolean;
+  }
+
   interface ClientOptions extends CoreOptions {
     version?: '2018-05-22' | '2017-03-08';
   }
@@ -685,6 +689,19 @@ declare module 'plaid' {
       initialProducts: Array<string>,
       options?: Object,
     ): Promise<SandboxPublicTokenCreateResponse>;
+
+    // sandboxItemFireWebhook(String, String, Function)
+    sandboxItemFireWebhook(
+      access_token: string,
+      webhook_code: string,
+      cb: Callback<SandboxItemFireWebhookResponse>,
+    ): void;
+
+    // sandboxItemFireWebhook(String, String)
+    sandboxItemFireWebhook(
+      access_token: string,
+      webhook_code: string,
+    ): Promise<SandboxItemFireWebhookResponse>;
   }
 
   interface PlaidEnvironments {
